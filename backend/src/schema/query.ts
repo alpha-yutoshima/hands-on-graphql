@@ -9,5 +9,8 @@ export const queryGQL = new GraphQLObjectType({
       type: new GraphQLList(taskGQL),
       resolve: taskList,
     },
+    searchTask: {
+      
+    }
   },
 });

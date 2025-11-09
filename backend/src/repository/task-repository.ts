@@ -81,3 +81,49 @@ export async function createTask(
     throw new Error("Failed to create task.");
   }
 }
+
+interface SearchTaskArgs {
+  title: string;
+  description: string;
+}
+
+export async function searchTask(
+  _: any,
+  { title, description }: SearchTaskArgs
+) {
+  try {
+    const connection = await connect();
+
+    return await new Promise<Task[]>((resolve, reject) => {
+      const sql = `
+      SELECT * 
+      FROM task
+      WHERE title LIKE ?
+      OR description LIKE ?
+      ORDER BY created_at DESC
+      `;
+
+      connection.query<ITask[]>(sql, [`%${title}%`, `%${description}%`], (err, result) => {
+        if (err) {
+          return reject(err);
+        }
+
+        const tasks = result.map((t: ITask) =>
+          toTask(
+            t.task_id,
+            t.category_id,
+            t.title,
+            t.description,
+            t.created_at,
+            t.updated_at
+          )
+        );
+
+        resolve(tasks);
+      });
+    });
+  } catch (e) {
+    console.error(e);
+    throw new Error("Failed to search task.");
+  }
+}

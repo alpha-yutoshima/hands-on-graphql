@@ -19,3 +19,13 @@ mutation CreateTask($title: String!, $description: String!) {
     }
   }
 }
+
+query SearchTask($title: String!, $description: String!) {
+  searchTask(title: $title, description: $description) {
+    title
+    description
+    category {
+      name
+    }
+  }
+}

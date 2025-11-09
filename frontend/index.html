@@ -4,24 +4,123 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>GraphQL Hands-On</title>
+    <style>
+      /* ベースのスタイル */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 2rem;
+        background-color: #f5f5f5;
+      }
+
+      /* フォームセクションのスタイル */
+      form {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: flex;
+        column-gap: 1rem;
+      }
+
+      /* ラベルとインプット、テキストエリアのスタイル */
+      label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        display: block;
+        width: 30%;
+      }
+
+      input,
+      textarea {
+        width: 70%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+
+      /* ボタンのスタイル */
+      button {
+        padding: 0.7rem 1.5rem;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* タスクリストのスタイル */
+      #task-list {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 2rem;
+      }
+
+      #task-list li {
+        background-color: #fff;
+        padding: 1rem;
+        margin-bottom: 1rem;
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .title {
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .description {
+        color: #555;
+      }
+
+      .form-div {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <section>
-      <form id="add-task-form" style="display: flex; column-gap: 1rem">
-        <div>
-          <label for="add-task-form-title" style="display: block">Title</label>
+      <form id="add-task-form">
+        <div class="form-div">
+          <label for="add-task-form-title">Title</label>
           <input type="text" name="title" id="add-task-form-title" />
         </div>
-        <div>
-          <label for="add-task-form-description" style="display: block"
-            >Description</label
-          >
+        <div class="form-div">
+          <label for="add-task-form-description">Description</label>
           <textarea
             name="description"
             id="add-task-form-description"
           ></textarea>
-          <button id="add-task">Add task</button>
         </div>
+        <button id="add-task">Add task</button>
+      </form>
+      <form id="search-task-form">
+        <div class="form-div">
+          <label for="add-task-form-title">Title</label>
+          <input type="text" name="title" id="add-task-form-title" />
+        </div>
+        <div class="form-div">
+          <label for="add-task-form-description">Description</label>
+          <textarea
+            name="description"
+            id="add-task-form-description"
+          ></textarea>
+        </div>
+        <button id="search-task">Search task</button>
       </form>
     </section>
     <section>
